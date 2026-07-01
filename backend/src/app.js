@@ -6,6 +6,10 @@ import authRoutes from './routes/auth.routes.js';
 
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true
+}));
 app.use(helmet());
 app.use(cors());
 app.use(morgaon('dev'));
