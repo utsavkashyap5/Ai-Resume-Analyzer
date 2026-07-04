@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const documentSchema = new mongoose.Schema({
+const resumeSchema = new mongoose.Schema({
 
     //Links this pdf directly to the user who uploaded it
 
@@ -14,10 +14,7 @@ const documentSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-
-    //The unique key/path inside your S3 bucket 
-
-    s3Key:{
+    resumeUrl:{
         type:String,
         required:true
     },
@@ -26,11 +23,9 @@ const documentSchema = new mongoose.Schema({
 
     extractedText:{
         type:String,
-        default:""
-    }
+        required:true,
+    },
 
 },{timestamps:true});
 
-const Document = mongoose.model("Document",documentSchema);
-
-export default Document;
+export default mongoose.model("Resume",resumeSchema);

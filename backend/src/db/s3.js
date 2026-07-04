@@ -1,10 +1,10 @@
-import {s3Client} from './s3Client.js';
+import {S3Client} from "@aws-sdk/client-s3";
 import dotenv from 'dotenv';
 dotenv.config();
 
 //Initializing the S3 client with the credentials from the .env file
 
-const s3 = new s3Client({
+const s3 = new S3Client({
     region:process.env.AWS_REGION,
     credentials:{
         accessKeyId:process.env.AWS_ACCESS_KEY_ID,
