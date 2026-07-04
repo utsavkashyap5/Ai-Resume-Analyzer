@@ -2,6 +2,13 @@ import User from "../models/user.model.js";
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
 
+const cookieOptions ={
+    httpOnly:true,
+    secure:process.env.NODE_ENV === 'production',
+    sameSite:"strict",
+    maxAge:7*24*60*60*1000 //7 days
+}
+
 export const registerUser = async (req,res) =>{
     try {
         const {fullName,email,password,phone,role} = req.body;
@@ -46,10 +53,11 @@ export const registerUser = async (req,res) =>{
             {expiresIn:'7d'}
         );
 
+        res.cookie('token',token,cookieOptions);
+
         res.status(201).json({
             success:true,
             message:"User registered successfully!",
-            token,
             user:{
                 id:newUser.id,
                 fullName:newUser.fullName,
