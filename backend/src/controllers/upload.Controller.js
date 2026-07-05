@@ -2,6 +2,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 import s3 from '../db/s3.js';
 import Resume from '../models/resume.model.js';
 import { extractTextFromPDF } from "../utils/pdfExtractor.js";
+import { cleanResumeText } from "../utils/cleanResumeText.js";
 
 export const uploadResume  = async(req,res) =>{
     try {
@@ -14,7 +15,9 @@ export const uploadResume  = async(req,res) =>{
         //Extract the text from the pdf.
         const extractedText = await extractTextFromPDF(req.file.buffer);
 
-        
+        const cleanedText = cleanResumeText(extractedText);
+
+       
 
         //Uplload to S3
 
@@ -37,13 +40,16 @@ export const uploadResume  = async(req,res) =>{
             fileName:req.file.originalname,
             resumeUrl,
             extractedText,
+            cleanedText,
         });
         return res.status(200).json({
             success:true,
             message:"Resume uploaded successfully.",
             resumeId:resume._id,
             resumeUrl,
-        }); 
+        });
+        
+
     }catch(err){
         console.error(err);
 

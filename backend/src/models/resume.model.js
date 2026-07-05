@@ -25,6 +25,10 @@ const resumeSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    cleanedText:{
+        type:String,
+        default:"",
+    },
 
 },{timestamps:true});
 

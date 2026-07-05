@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import authRoutes from './routes/auth.routes.js';
 import cookieParser from 'cookie-parser';
 import uploadRoutes from './routes/upload.routes.js'
+import analyzeRoutes from "./routes/analyze.routes.js";
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use(cookieParser());
 
 app.use("/api/auth",authRoutes);
 app.use('/api/upload',uploadRoutes);
+app.use("/api/analyze", analyzeRoutes);
 
 export default app;
