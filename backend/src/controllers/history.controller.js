@@ -22,3 +22,35 @@ export const getAnalysisHistory = async(req,res)=>{
         });
     }
 };
+
+//Delete Api 
+
+export const deleteAnalysis = async (req,res) =>{
+    try{
+        const {analysisId} = req.params;
+
+        const analysis = await Analysis.findOneAndDelete({
+            _id:analysisId,
+            userId:req.user._id,
+        });
+
+        if(!analysis){
+            return res.status(404).json({
+                success:false,
+                message:"Analysis not found.",
+            });
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"Analysis Deleted Successfully",
+        });
+}catch(err){
+    console.error(err);
+
+    return res.status(500).json({
+        success:false,
+        message:"Failed to delete analysis."
+    });
+}
+};

@@ -60,3 +60,4 @@ export const analyzeResumeController = async (req,res) =>{
         });
     }
 };
+
