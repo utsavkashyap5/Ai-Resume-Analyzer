@@ -17,7 +17,7 @@ app.use(cors({
   allowedHeaders:["Content-Type","Authorization"]
 }));
 app.use(helmet());
-app.use(cors());
+
 app.use(morgaon('dev'));
 app.use(express.json());
 app.use(cookieParser());

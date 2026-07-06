@@ -1,11 +1,16 @@
-import React from 'react'
-import AuthSystem from './pages/AuthSystem'
+import { RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './components/common/Toast';
+import router from './routes';
+
 const App = () => {
   return (
-    <div>
-      <AuthSystem></AuthSystem>
-    </div>
-  )
-}
+    <AuthProvider>
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
+    </AuthProvider>
+  );
+};
 
-export default App
+export default App;
