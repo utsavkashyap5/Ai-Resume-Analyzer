@@ -9,7 +9,7 @@ export const analyzeResumeController = async (req,res) =>{
 
         //validate Input
         if(!jobDescription){
-            return res.stauts(400).json({
+            return res.status(400).json({
                 success:false,
                 message:"Job Desription is required.",
             });
