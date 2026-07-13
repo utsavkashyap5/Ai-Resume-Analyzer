@@ -4,13 +4,13 @@ import { cn } from '../../utils/helpers';
 
 const variants = {
   primary:
-    'bg-[#8B5E3C] hover:bg-[#6F472D] text-white shadow-sm hover:shadow-md',
+    'bg-[#D4A373] hover:bg-[#C89463] text-white shadow-sm hover:shadow-md',
   secondary:
-    'bg-[#E8DDD0] hover:bg-[#D6C9B8] text-[#2D2A26]',
+    'bg-[#E7C8A0] hover:bg-[#D4A373] text-[#2D2A26] hover:text-white',
   outline:
-    'border-2 border-[#E8DDD0] text-[#2D2A26] hover:bg-[#F8F5F0] hover:border-[#C89F7B]',
+    'border border-[#E8DDD0] text-[#2D2A26] hover:bg-[#FAEDCD] hover:border-[#D4A373]',
   ghost:
-    'text-[#6B665F] hover:bg-[#F8F5F0] hover:text-[#2D2A26]',
+    'text-[#6B665F] hover:bg-[#FAEDCD] hover:text-[#2D2A26]',
   danger:
     'bg-[#C65A5A] hover:bg-[#B04A4A] text-white shadow-sm hover:shadow-md',
 };
@@ -36,14 +36,14 @@ const Button = ({
 }) => {
   return (
     <motion.button
-      whileHover={!disabled ? { scale: 1.02 } : undefined}
-      whileTap={!disabled ? { scale: 0.98 } : undefined}
+      whileHover={!disabled ? { scale: 1.02, y: -1 } : undefined}
+      whileTap={!disabled ? { scale: 0.97 } : undefined}
       type={type}
       disabled={disabled || loading}
       aria-label={ariaLabel}
       aria-busy={loading}
-      className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#8B5E3C] focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+        className={cn(
+        'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#D4A373] focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
         variants[variant],
         sizes[size],
         className

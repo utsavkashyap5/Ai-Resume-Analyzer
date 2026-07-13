@@ -5,17 +5,17 @@ import { cn } from '../../utils/helpers';
 const AnalyzeButton = ({ onClick, analyzing, disabled, progress }) => {
   return (
     <motion.button
-      whileHover={!disabled && !analyzing ? { scale: 1.01 } : undefined}
-      whileTap={!disabled && !analyzing ? { scale: 0.99 } : undefined}
+      whileHover={!disabled && !analyzing ? { scale: 1.02, y: -1 } : undefined}
+      whileTap={!disabled && !analyzing ? { scale: 0.97 } : undefined}
       onClick={onClick}
       disabled={disabled || analyzing}
       className={cn(
-        'relative w-full py-3.5 px-6 rounded-xl text-sm font-semibold transition-all duration-200 overflow-hidden',
+        'relative w-full py-4 px-6 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden',
         analyzing
-          ? 'bg-[#8B5E3C] text-white cursor-not-allowed'
+          ? 'bg-[#D4A373] text-white cursor-not-allowed'
           : disabled
           ? 'bg-[#E8DDD0] text-[#6B665F] cursor-not-allowed'
-          : 'bg-[#8B5E3C] hover:bg-[#6F472D] text-white shadow-sm'
+          : 'bg-[#D4A373] hover:bg-[#C89463] text-white shadow-sm hover:shadow-md'
       )}
     >
       {analyzing ? (
@@ -33,9 +33,9 @@ const AnalyzeButton = ({ onClick, analyzing, disabled, progress }) => {
       {analyzing && (
         <motion.div
           initial={{ width: '0%' }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.5 }}
-          className="absolute bottom-0 left-0 h-1 bg-[#C89F7B]/50"
+          animate={{ width: `${Math.min(progress, 100)}%` }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute bottom-0 left-0 h-1 bg-[#E7C8A0]/60 rounded-full"
         />
       )}
     </motion.button>

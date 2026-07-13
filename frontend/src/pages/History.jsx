@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowUpDown } from 'lucide-react';
+import { Search, ArrowUpDown, Clock } from 'lucide-react';
 import PageContainer from '../components/common/PageContainer';
 import SectionHeader from '../components/common/SectionHeader';
 import { useToast } from '../components/common/Toast';
@@ -108,24 +108,29 @@ const History = () => {
       />
 
       {!loading && analyses.length > 0 && (
-        <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row gap-3 mb-6"
+        >
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B665F]" aria-hidden="true" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B665F]" aria-hidden="true" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by resume name or job description..."
-              className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-[#E8DDD0] bg-[#FFFCF7] text-sm text-[#2D2A26] placeholder-[#6B665F]/50 focus:outline-none focus:ring-2 focus:ring-[#8B5E3C]/30 focus:border-[#8B5E3C] transition-colors"
+              className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E8DDD0] bg-[#FCF4D7] text-sm text-[#2D2A26] placeholder-[#6B665F]/50 focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200"
               aria-label="Search analyses"
             />
           </div>
           <div className="relative">
-            <ArrowUpDown className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B665F] pointer-events-none" aria-hidden="true" />
+            <ArrowUpDown className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B665F] pointer-events-none" aria-hidden="true" />
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="appearance-none pl-9 pr-8 py-2.5 rounded-lg border border-[#E8DDD0] bg-[#FFFCF7] text-sm text-[#2D2A26] focus:outline-none focus:ring-2 focus:ring-[#8B5E3C]/30 focus:border-[#8B5E3C] transition-colors cursor-pointer"
+              className="appearance-none pl-10 pr-10 py-3 rounded-2xl border border-[#E8DDD0] bg-[#FCF4D7] text-sm text-[#2D2A26] focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] transition-all duration-200 cursor-pointer"
               aria-label="Sort analyses"
             >
               {SORT_OPTIONS.map((opt) => (
@@ -133,30 +138,49 @@ const History = () => {
               ))}
             </select>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {loading ? (
-        <HistorySkeleton />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <HistorySkeleton />
+        </motion.div>
       ) : filteredAndSorted.length === 0 ? (
         analyses.length === 0 ? <HistoryEmpty /> : (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <Search className="w-10 h-10 text-[#6B665F] mb-3" />
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col items-center justify-center py-20 text-center"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#FAEDCD] flex items-center justify-center mb-4">
+              <Search className="w-7 h-7 text-[#D4A373]" />
+            </div>
             <h3 className="text-base font-semibold text-[#2D2A26] mb-1">No matches found</h3>
             <p className="text-sm text-[#6B665F]">Try adjusting your search query</p>
-          </div>
+          </motion.div>
         )
       ) : (
-        <div className="space-y-3">
-          <p className="text-xs text-[#6B665F]">
-            {filteredAndSorted.length} of {analyses.length} analysis{analyses.length !== 1 ? 'es' : ''}
-          </p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Clock className="w-3.5 h-3.5 text-[#6B665F]" />
+            <p className="text-xs text-[#6B665F]">
+              {filteredAndSorted.length} of {analyses.length} analysis{analyses.length !== 1 ? 'es' : ''}
+            </p>
+          </div>
           <AnimatePresence mode="popLayout">
             {filteredAndSorted.map((a, i) => (
               <HistoryCard key={a._id} analysis={a} index={i} onDelete={handleDeleteClick} />
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
       )}
 
       <DeleteConfirmModal

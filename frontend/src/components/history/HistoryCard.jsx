@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FileText, Calendar, TrendingUp, Trash2 } from 'lucide-react';
+import { FileText, Calendar, Trash2 } from 'lucide-react';
 import { cn } from '../../utils/helpers';
 
 const HistoryCard = ({ analysis, index, onDelete }) => {
@@ -41,23 +41,23 @@ const HistoryCard = ({ analysis, index, onDelete }) => {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.04 }}
+      transition={{ duration: 0.35, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
       layout
       exit={{ opacity: 0, x: -20 }}
-      className="group rounded-xl bg-[#FFFCF7] border border-[#E8DDD0] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all duration-200 overflow-hidden"
+      className="group rounded-2xl bg-[#FCF4D7] border border-[#E8DDD0] hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] transition-all duration-300 overflow-hidden"
     >
       <button
         onClick={handleClick}
-        className="w-full text-left p-4 sm:p-5"
+        className="w-full text-left p-5 sm:p-6"
         aria-label={`View analysis for ${fileName}`}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#E8DDD0]/50 flex items-center justify-center flex-shrink-0 group-hover:bg-[#8B5E3C]/10 transition-colors">
-            <FileText className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-[#6B665F] group-hover:text-[#8B5E3C] transition-colors" />
+        <div className="flex items-start gap-4">
+          <div className="w-11 h-11 rounded-xl bg-[#FAEDCD] flex items-center justify-center flex-shrink-0 group-hover:bg-[#D4A373]/10 transition-colors duration-200">
+            <FileText className="w-5.5 h-5.5 text-[#6B665F] group-hover:text-[#D4A373] transition-colors duration-200" />
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
               <div className="min-w-0">
                 <p className="text-sm font-medium text-[#2D2A26] truncate">{fileName}</p>
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-1.5">
@@ -73,9 +73,13 @@ const HistoryCard = ({ analysis, index, onDelete }) => {
 
               <div className="flex items-center gap-2 flex-shrink-0 self-start">
                 {atsScore !== null && (
-                  <div className={cn('flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium tabular-nums', getScoreBg(), getScoreColor())}>
-                    <TrendingUp className="w-3 h-3" />
+                  <div className={cn('px-3 py-1 rounded-lg text-xs font-bold tabular-nums tracking-tight', getScoreBg(), getScoreColor())}>
                     {atsScore}
+                  </div>
+                )}
+                {atsScore === null && (
+                  <div className="px-3 py-1 rounded-lg text-xs font-medium text-[#6B665F] bg-[#6B665F]/10">
+                    --
                   </div>
                 )}
               </div>
@@ -84,10 +88,10 @@ const HistoryCard = ({ analysis, index, onDelete }) => {
         </div>
       </button>
 
-      <div className="px-4 sm:px-5 pb-3 sm:pb-4 flex justify-end border-t border-[#E8DDD0]/50 pt-2">
+      <div className="px-5 sm:px-6 pb-3 sm:pb-4 flex justify-end border-t border-[#E8DDD0]/50 pt-2">
         <button
           onClick={(e) => { e.stopPropagation(); onDelete(analysis._id); }}
-          className="flex items-center gap-1.5 text-xs text-[#6B665F] hover:text-[#C65A5A] transition-colors px-2 py-1 rounded-lg hover:bg-[#C65A5A]/5"
+          className="flex items-center gap-1.5 text-xs text-[#6B665F] hover:text-[#C65A5A] transition-colors px-2.5 py-1.5 rounded-lg hover:bg-[#C65A5A]/5"
           aria-label={`Delete analysis for ${fileName}`}
         >
           <Trash2 className="w-3.5 h-3.5" />

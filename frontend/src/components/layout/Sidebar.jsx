@@ -45,21 +45,21 @@ const Sidebar = ({ open, onClose }) => {
       )}
       <aside
         className={cn(
-          'fixed top-0 left-0 z-50 h-full w-64 bg-[#FFFCF7] border-r border-[#E8DDD0] flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:z-auto',
+          'fixed top-0 left-0 z-50 h-full w-64 bg-[#FCF4D7] border-r border-[#E8DDD0] flex flex-col transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:z-auto',
           open ? 'translate-x-0' : '-translate-x-full'
         )}
         aria-label="Main navigation"
       >
         <div className="flex items-center justify-between px-5 h-14 sm:h-16 border-b border-[#E8DDD0]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#8B5E3C] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#D4A373] flex items-center justify-center">
               <ChevronRight className="w-5 h-5 text-white" />
             </div>
             <span className="font-semibold text-[#2D2A26]">HireMatch</span>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-[#6B665F] hover:bg-[#F8F5F0] transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-[#8B5E3C]"
+            className="p-1.5 rounded-lg text-[#6B665F] hover:bg-[#FAEDCD] transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-[#D4A373]"
             aria-label="Close sidebar"
           >
             <X className="w-5 h-5" />
@@ -76,8 +76,8 @@ const Sidebar = ({ open, onClose }) => {
                 cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                   isActive
-                    ? 'bg-[#8B5E3C]/10 text-[#8B5E3C]'
-                    : 'text-[#6B665F] hover:bg-[#F8F5F0] hover:text-[#2D2A26]'
+                    ? 'bg-[#D4A373]/10 text-[#D4A373] font-semibold'
+                    : 'text-[#6B665F] hover:bg-[#FAEDCD] hover:text-[#2D2A26]'
                 )
               }
               aria-label={item.label}
@@ -97,7 +97,7 @@ const Sidebar = ({ open, onClose }) => {
           )}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-[#6B665F] hover:bg-[#F8F5F0] hover:text-[#C65A5A] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#C65A5A]"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-[#6B665F] hover:bg-[#FAEDCD] hover:text-[#C65A5A] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-[#C65A5A]"
             aria-label="Sign out"
           >
             <LogOut className="w-4 h-4" />

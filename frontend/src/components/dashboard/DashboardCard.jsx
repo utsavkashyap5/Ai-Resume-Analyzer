@@ -7,8 +7,8 @@ const DashboardCard = ({ children, title, subtitle, className, icon: Icon }) => 
       {title && (
         <div className="flex items-center gap-3 mb-4">
           {Icon && (
-            <div className="w-9 h-9 rounded-lg bg-[#8B5E3C]/10 flex items-center justify-center">
-              <Icon className="w-4.5 h-4.5 text-[#8B5E3C]" />
+            <div className="w-9 h-9 rounded-xl bg-[#D4A373]/10 flex items-center justify-center">
+              <Icon className="w-4.5 h-4.5 text-[#D4A373]" />
             </div>
           )}
           <div>

@@ -11,13 +11,13 @@ const UploadProgress = ({ status, fileName, progress, error, onRetry }) => {
       animate={{ opacity: 1, y: 0 }}
       className={cn(
         'p-4 rounded-lg border text-sm',
-        status === 'uploading' && 'border-[#8B5E3C]/20 bg-[#8B5E3C]/5',
+        status === 'uploading' && 'border-[#D4A373]/20 bg-[#D4A373]/5',
         status === 'success' && 'border-[#4F7D5C]/20 bg-[#4F7D5C]/5',
         status === 'error' && 'border-[#C65A5A]/20 bg-[#C65A5A]/5',
       )}
     >
       <div className="flex items-start gap-3">
-        {status === 'uploading' && <Loader2 className="w-5 h-5 text-[#8B5E3C] animate-spin mt-0.5" />}
+        {status === 'uploading' && <Loader2 className="w-5 h-5 text-[#D4A373] animate-spin mt-0.5" />}
         {status === 'success' && <CheckCircle className="w-5 h-5 text-[#4F7D5C] mt-0.5" />}
         {status === 'error' && <AlertCircle className="w-5 h-5 text-[#C65A5A] mt-0.5" />}
 
@@ -39,7 +39,7 @@ const UploadProgress = ({ status, fileName, progress, error, onRetry }) => {
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.3 }}
-                className="h-full rounded-full bg-[#8B5E3C]"
+                className="h-full rounded-full bg-[#D4A373]"
               />
             </div>
           )}
@@ -48,10 +48,10 @@ const UploadProgress = ({ status, fileName, progress, error, onRetry }) => {
           )}
         </div>
 
-        {status === 'error' && onRetry && (
+          {status === 'error' && onRetry && (
           <button
             onClick={onRetry}
-            className="text-xs font-medium text-[#8B5E3C] hover:text-[#6F472D] transition-colors whitespace-nowrap"
+            className="text-xs font-medium text-[#D4A373] hover:text-[#C89463] transition-colors whitespace-nowrap"
           >
             Retry
           </button>

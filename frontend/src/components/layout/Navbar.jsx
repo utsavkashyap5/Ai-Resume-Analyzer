@@ -6,10 +6,10 @@ const Navbar = ({ onMenuClick }) => {
   const { user } = useAuth();
 
   return (
-    <header className="h-14 sm:h-16 bg-[#FFFCF7] border-b border-[#E8DDD0] flex items-center justify-between px-3 sm:px-4 lg:px-6">
+    <header className="h-14 sm:h-16 bg-[#FCF4D7] border-b border-[#E8DDD0] flex items-center justify-between px-3 sm:px-4 lg:px-6">
       <button
         onClick={onMenuClick}
-        className="p-2 rounded-lg text-[#6B665F] hover:bg-[#F8F5F0] transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-[#8B5E3C]"
+        className="p-2 rounded-lg text-[#6B665F] hover:bg-[#FAEDCD] transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-[#D4A373]"
         aria-label="Open sidebar menu"
       >
         <Menu className="w-5 h-5" />

@@ -1,6 +1,5 @@
 import Modal from '../common/Modal';
-import Button from '../common/Button';
-import { AlertTriangle } from 'lucide-react';
+import { Loader2, AlertTriangle } from 'lucide-react';
 
 const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, loading }) => {
   return (
@@ -14,12 +13,22 @@ const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, loading }) => {
           Are you sure you want to delete this analysis? This action cannot be undone.
         </p>
         <div className="flex gap-3 justify-center">
-          <Button variant="ghost" onClick={onClose} disabled={loading}>
+          <button
+            onClick={onClose}
+            disabled={loading}
+            className="px-5 py-2.5 text-sm font-medium text-[#6B665F] hover:text-[#2D2A26] hover:bg-[#FAEDCD] rounded-xl transition-colors duration-200"
+          >
             Cancel
-          </Button>
-          <Button variant="danger" onClick={onConfirm} loading={loading} aria-label="Confirm delete">
+          </button>
+          <button
+            onClick={onConfirm}
+            disabled={loading}
+            className="px-5 py-2.5 text-sm font-medium bg-[#C65A5A] hover:bg-[#B04A4A] text-white rounded-xl transition-colors duration-200 flex items-center gap-2"
+            aria-label="Confirm delete"
+          >
+            {loading && <Loader2 className="w-4 h-4 animate-spin" />}
             Delete
-          </Button>
+          </button>
         </div>
       </div>
     </Modal>

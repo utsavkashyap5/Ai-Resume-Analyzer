@@ -12,6 +12,16 @@
   --color-brand-success: #4F7D5C;
   --color-brand-warning: #D9A441;
   --color-brand-error: #C65A5A;
+
+  --color-primary: #D4A373;
+  --color-secondary: #E7C8A0;
+  --color-papaya: #FAEDCD;
+  --color-cream: #FCF4D7;
+  --color-page-bg: #FFFCE0;
+  --color-main: #2D2A26;
+  --color-muted: #6B665F;
+  --color-line: #E8DDD0;
+  --color-primary-hover: #C89463;
 }
 
 body {

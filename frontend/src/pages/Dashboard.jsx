@@ -96,30 +96,31 @@ const Dashboard = () => {
 
   return (
     <PageContainer>
-      <div className="mb-8">
-        <motion.h1
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#2D2A26]"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-8"
+      >
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#2D2A26]">
           Welcome{user ? `, ${user.fullName?.split(' ')[0]}` : ''}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="text-sm text-[#6B665F] mt-1.5"
-        >
+        </h1>
+        <p className="text-sm text-[#6B665F] mt-1.5">
           Upload your resume and analyze it against any job description
-        </motion.p>
-      </div>
+        </p>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="rounded-xl bg-[#FFFCF7] border border-[#E8DDD0] shadow-[0_1px_3px_rgba(0,0,0,0.04)] p-5 sm:p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-[#8B5E3C]/10 flex items-center justify-center">
-                <Upload className="w-4.5 h-4.5 text-[#8B5E3C]" />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl bg-[#FCF4D7] border border-[#E8DDD0] p-6 sm:p-7"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-[#D4A373]/10 flex items-center justify-center">
+                <Upload className="w-5 h-5 text-[#D4A373]" />
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-[#2D2A26]">Resume</h3>
@@ -127,12 +128,17 @@ const Dashboard = () => {
               </div>
             </div>
             <UploadDropzone onUpload={handleUpload} disabled={analyzing} />
-          </div>
+          </motion.div>
 
-          <div className="rounded-xl bg-[#FFFCF7] border border-[#E8DDD0] shadow-[0_1px_3px_rgba(0,0,0,0.04)] p-5 sm:p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-[#8B5E3C]/10 flex items-center justify-center">
-                <FileText className="w-4.5 h-4.5 text-[#8B5E3C]" />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl bg-[#FCF4D7] border border-[#E8DDD0] p-6 sm:p-7"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-[#D4A373]/10 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-[#D4A373]" />
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-[#2D2A26]">Job Description</h3>
@@ -144,14 +150,14 @@ const Dashboard = () => {
               onChange={setJobDescription}
               disabled={analyzing}
             />
-          </div>
+          </motion.div>
 
           {analyzeError && (
             <motion.div
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
               role="alert"
-              className="flex items-start gap-3 p-4 rounded-xl bg-[#C65A5A]/10 border border-[#C65A5A]/20"
+              className="flex items-start gap-3 p-4 rounded-2xl bg-[#C65A5A]/10 border border-[#C65A5A]/20"
             >
               <AlertCircle className="w-5 h-5 text-[#C65A5A] mt-0.5 flex-shrink-0" />
               <div>
@@ -161,12 +167,18 @@ const Dashboard = () => {
             </motion.div>
           )}
 
-          <AnalyzeButton
-            onClick={handleAnalyze}
-            analyzing={analyzing}
-            disabled={!canAnalyze}
-            progress={analyzeProgress}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <AnalyzeButton
+              onClick={handleAnalyze}
+              analyzing={analyzing}
+              disabled={!canAnalyze}
+              progress={analyzeProgress}
+            />
+          </motion.div>
 
           {analyzing && (
             <motion.p
@@ -180,11 +192,16 @@ const Dashboard = () => {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl bg-[#FFFCF7] border border-[#E8DDD0] shadow-[0_1px_3px_rgba(0,0,0,0.04)] p-5 sm:p-6">
-            <div className="flex items-center justify-between mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl bg-[#FCF4D7] border border-[#E8DDD0] p-6 sm:p-7"
+          >
+            <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#8B5E3C]/10 flex items-center justify-center">
-                  <Clock className="w-4.5 h-4.5 text-[#8B5E3C]" />
+                <div className="w-10 h-10 rounded-xl bg-[#D4A373]/10 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-[#D4A373]" />
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#2D2A26]">Recent Analyses</h3>
@@ -193,7 +210,7 @@ const Dashboard = () => {
               </div>
               <button
                 onClick={() => navigate('/history')}
-                className="text-xs font-medium text-[#8B5E3C] hover:text-[#6F472D] transition-colors flex items-center gap-0.5"
+                className="text-xs font-medium text-[#D4A373] hover:text-[#C89463] transition-colors flex items-center gap-0.5"
                 aria-label="View all history"
               >
                 View all
@@ -205,7 +222,7 @@ const Dashboard = () => {
               <div className="space-y-3 py-2">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="animate-pulse flex items-center gap-3" aria-hidden="true">
-                    <div className="w-10 h-10 rounded-lg bg-[#E8DDD0]" />
+                    <div className="w-10 h-10 rounded-xl bg-[#E8DDD0]" />
                     <div className="flex-1 space-y-1.5">
                       <div className="h-3 w-3/4 rounded bg-[#E8DDD0]" />
                       <div className="h-2.5 w-1/2 rounded bg-[#E8DDD0]" />
@@ -222,7 +239,7 @@ const Dashboard = () => {
             ) : (
               <EmptyDashboard />
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </PageContainer>

@@ -23,16 +23,16 @@ const JobDescriptionCard = ({ value, onChange, disabled }) => {
           disabled={disabled}
           placeholder="Paste or type the job description here..."
           maxLength={maxChars}
-          rows={8}
+          rows={6}
           aria-label="Job description"
-          className="w-full rounded-xl border border-[#E8DDD0] bg-[#FFFCF7] px-4 py-3.5 text-sm text-[#2D2A26] placeholder-[#6B665F]/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#8B5E3C]/30 focus:border-[#8B5E3C] resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-2xl border border-[#E8DDD0] bg-[#FFFCE0] px-5 py-4 text-sm text-[#2D2A26] placeholder-[#6B665F]/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#D4A373]/20 focus:border-[#D4A373] resize-none disabled:opacity-50 disabled:cursor-not-allowed"
         />
       </div>
 
       <div className="flex items-center justify-between">
         <p className="text-xs text-[#6B665F]">
           {charCount === 0
-            ? 'Paste the job description to analyze fit'
+            ? 'Paste the target job description'
             : `${charCount.toLocaleString()} / ${maxChars.toLocaleString()} characters`}
         </p>
         {charCount > 0 && (
