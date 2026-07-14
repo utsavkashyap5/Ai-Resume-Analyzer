@@ -30,12 +30,13 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, [checkAuth]);
 
-  const login = async (email, password) => {
-    const data = await loginUser(email, password);
-    document.cookie = `token=${data.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Strict`;
-    setUser(data.user);
-    return data;
-  };
+const login = async (email, password) => {
+  const data = await loginUser(email, password);
+
+  setUser(data.user);
+
+  return data;
+};
 
   const register = async (userData) => {
     const data = await registerUser(userData);

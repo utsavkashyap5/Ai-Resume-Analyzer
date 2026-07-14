@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -51,12 +51,12 @@ const Sidebar = ({ open, onClose }) => {
         aria-label="Main navigation"
       >
         <div className="flex items-center justify-between px-5 h-14 sm:h-16 border-b border-[#E8DDD0]">
-          <div className="flex items-center gap-2.5">
+          <Link to="/" onClick={onClose} className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#D4A373] flex items-center justify-center">
               <ChevronRight className="w-5 h-5 text-white" />
             </div>
             <span className="font-semibold text-[#2D2A26]">HireMatch</span>
-          </div>
+          </Link>
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg text-[#6B665F] hover:bg-[#FAEDCD] transition-colors lg:hidden focus-visible:outline-2 focus-visible:outline-[#D4A373]"

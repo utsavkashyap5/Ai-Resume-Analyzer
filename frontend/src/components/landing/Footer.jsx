@@ -1,13 +1,22 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Sparkles, Globe, Code2, Mail } from "lucide-react";
+import { Sparkles, Globe, Code2 } from "lucide-react";
 
 const links = [
-  { label: "Privacy", href: "#" },
-  { label: "Terms", href: "#" },
-  { label: "GitHub", href: "#", icon: Code2 },
-  { label: "LinkedIn", href: "#", icon: Globe },
-  { label: "Contact", href: "#", icon: Mail },
+  { 
+    label: "GitHub", 
+    href: "https://github.com/utsavkashyap5", 
+    icon: Code2, 
+    target: "_blank", 
+    rel: "noopener noreferrer" 
+  },
+  { 
+    label: "LinkedIn", 
+    href: "https://linkedin.com", // 1. Fixed: Added https://
+    icon: Globe, 
+    target: "_blank", // 2. Fixed: Corrected "_blanlk" typo
+    rel: "noopener noreferrer" 
+  },
 ];
 
 export default function Footer() {
@@ -33,6 +42,8 @@ export default function Footer() {
               <a
                 key={link.label}
                 href={link.href}
+                target={link.target} // 3. Fixed: Passing target down
+                rel={link.rel}       // 4. Fixed: Passing rel down
                 className="text-sm text-white/60 hover:text-primary transition-colors duration-200 flex items-center gap-1.5"
               >
                 {link.icon && <link.icon className="w-3.5 h-3.5" />}

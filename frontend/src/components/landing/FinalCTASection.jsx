@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
+
+
 
 export default function FinalCTASection() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <section className="py-24 px-6 bg-cream">
       <div className="max-w-3xl mx-auto text-center">
@@ -27,7 +32,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <Link
-              to="/register"
+              to={isAuthenticated ? "/dashboard" : "/register"}
               className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-base font-medium rounded-xl transition-colors duration-300 hover:bg-primary-hover"
             >
               Analyze My Resume

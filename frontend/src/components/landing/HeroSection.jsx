@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play } from "lucide-react";
 import DashboardMockup from "./DashboardMockup";
+import { useAuth } from "../../context/AuthContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,6 +22,8 @@ const childVariants = {
 };
 
 export default function HeroSection() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <section className="min-h-screen flex items-center pt-24 pb-16 px-6">
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -62,8 +65,12 @@ export default function HeroSection() {
             <Link
               to="/register"
               className="group relative inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-medium rounded-lg overflow-hidden transition-colors duration-300 hover:bg-primary-hover"
+            ><Link
+              to={isAuthenticated ? "/dashboard" : "/register"}
             >
-              <span className="relative z-10">Analyze Resume</span>
+                Analyze Resume
+              </Link>
+              
               <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               <motion.span
                 className="absolute inset-0 bg-white/10"

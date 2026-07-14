@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Sparkles, Menu, X } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,14 +18,13 @@ export default function Nav() {
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
   ];
-
+  const { isAuthenticated, logout } = useAuth();
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-500 ${scrolled
           ? "bg-page-bg/80 backdrop-blur-xl border-b border-line"
           : "bg-transparent"
-      }`}
+        }`}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -47,18 +47,39 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <Link
-            to="/login"
-            className="text-sm font-medium text-primary hover:text-primary-hover transition-colors duration-200"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/register"
-            className="text-sm font-medium px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-colors duration-200"
-          >
-            Get Started
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium text-primary hover:text-primary-hover"
+              >
+                Dashboard
+              </Link>
+
+              <Link
+                onClick={logout}
+                className="text-sm font-medium"
+              >
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm font-medium text-primary hover:text-primary-hover"
+              >
+                Sign In
+              </Link>
+
+              <Link
+                to="/register"
+                className="text-sm font-medium px-4 py-2 bg-primary text-white rounded-lg"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
 
         <button

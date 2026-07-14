@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 const cookieOptions ={
     httpOnly:true,
     secure:process.env.NODE_ENV === 'production',
-    sameSite:"strict",
+    sameSite:"lax",
+    path:"/",
     maxAge:7*24*60*60*1000 //7 days
 }
 
@@ -110,10 +111,11 @@ export const loginUser = async (req,res) =>{
             {expiresIn:'7d'}
         );
 
+        res.cookie('token',token,cookieOptions);
+        
         res.status(200).json({
             success:true,
             message:"User logged in successfully!",
-            token,
             user:{
                 id:user.id,
                 fullName:user.fullName,
