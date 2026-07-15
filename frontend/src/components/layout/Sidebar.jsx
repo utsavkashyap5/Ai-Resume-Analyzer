@@ -32,6 +32,7 @@ const Sidebar = ({ open, onClose }) => {
 
   return (
     <AnimatePresence mode="wait">
+      <>
       {open && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -105,6 +106,7 @@ const Sidebar = ({ open, onClose }) => {
           </button>
         </div>
       </aside>
+      </>
     </AnimatePresence>
   );
 };

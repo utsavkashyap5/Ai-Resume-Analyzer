@@ -22,8 +22,8 @@ export default function Nav() {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-500 ${scrolled
-          ? "bg-page-bg/80 backdrop-blur-xl border-b border-line"
-          : "bg-transparent"
+        ? "bg-page-bg/80 backdrop-blur-xl border-b border-line"
+        : "bg-transparent"
         }`}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -56,12 +56,12 @@ export default function Nav() {
                 Dashboard
               </Link>
 
-              <Link
+              <button
                 onClick={logout}
                 className="text-sm font-medium"
               >
                 Logout
-              </Link>
+              </button>
             </>
           ) : (
             <>
@@ -110,20 +110,47 @@ export default function Nav() {
                   {link.label}
                 </a>
               ))}
-              <Link
-                to="/login"
-                onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium text-primary"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                onClick={() => setMobileOpen(false)}
-                className="text-sm font-medium px-4 py-2 bg-primary text-white rounded-lg text-center"
-              >
-                Get Started
-              </Link>
+              {
+                isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-sm font-medium text-primary"
+                    >
+                      Dashboard
+                    </Link>
+
+                    <button
+                      onClick={() => {
+                        logout();
+                        setMobileOpen(false);
+                      }}
+                      className="text-left text-sm font-medium"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-sm font-medium text-primary"
+                    >
+                      Sign In
+                    </Link>
+
+                    <Link
+                      to="/register"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-sm font-medium px-4 py-2 bg-primary text-white rounded-lg text-center"
+                    >
+                      Get Started
+                    </Link>
+                  </>
+                )
+              }
             </div>
           </motion.div>
         )}

@@ -63,19 +63,21 @@ export default function HeroSection() {
             className="flex flex-wrap gap-4 pt-2"
           >
             <Link
-              to="/register"
-              className="group relative inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-medium rounded-lg overflow-hidden transition-colors duration-300 hover:bg-primary-hover"
-            ><Link
               to={isAuthenticated ? "/dashboard" : "/register"}
+              className="group relative inline-flex items-center gap-2 px-6 py-3 bg-primary text-white text-sm font-medium rounded-lg overflow-hidden transition-colors duration-300 hover:bg-primary-hover"
             >
-                Analyze Resume
-              </Link>
-              
+              <span className="relative z-10">Analyze Resume</span>
+
               <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+
               <motion.span
                 className="absolute inset-0 bg-white/10"
                 initial={{ scale: 0, opacity: 0 }}
-                whileTap={{ scale: 2, opacity: 1, transition: { duration: 0.4 } }}
+                whileTap={{
+                  scale: 2,
+                  opacity: 1,
+                  transition: { duration: 0.4 },
+                }}
               />
             </Link>
             <a
