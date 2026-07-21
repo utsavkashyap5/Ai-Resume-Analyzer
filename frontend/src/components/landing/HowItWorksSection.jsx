@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 import { Upload, ClipboardPaste, Brain, FileCheck } from "lucide-react";
 
@@ -68,27 +69,50 @@ export default function HowItWorksSection() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {steps.map((step, index) => (
-            <div key={step.title} className="flex flex-col lg:flex-1 items-center">
-              <motion.div
-                variants={stepVariants}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
-                  <step.icon className="w-7 h-7 text-primary" />
-                </div>
-                <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary text-white text-xs font-bold mb-3">
-                  {index + 1}
-                </div>
-                <h3 className="text-lg font-semibold text-main mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted leading-relaxed max-w-[220px]">
-                  {step.description}
-                </p>
-              </motion.div>
+            <Fragment key={step.title}>
+              <div className="flex flex-col lg:flex-1 items-center">
+                <motion.div
+                  variants={stepVariants}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                    <step.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <div className="flex items-center justify-center w-7 h-7 rounded-full bg-primary text-white text-xs font-bold mb-3">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-lg font-semibold text-main mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted leading-relaxed max-w-[220px]">
+                    {step.description}
+                  </p>
+                </motion.div>
+
+                {index < steps.length - 1 && (
+                  <div className="flex lg:hidden flex-col items-center py-3">
+                    <motion.svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#D4A373"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ y: -5, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + index * 0.2 }}
+                    >
+                      <path d="M12 5v14M5 12l7 7 7-7" />
+                    </motion.svg>
+                  </div>
+                )}
+              </div>
 
               {index < steps.length - 1 && (
-                <div className="hidden lg:flex items-center px-4 pt-8">
+                <div className="hidden lg:flex items-center px-4">
                   <motion.svg
                     width="32"
                     height="32"
@@ -107,28 +131,7 @@ export default function HowItWorksSection() {
                   </motion.svg>
                 </div>
               )}
-
-              {index < steps.length - 1 && (
-                <div className="flex lg:hidden flex-col items-center py-3">
-                  <motion.svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#D4A373"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ y: -5, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.2 }}
-                  >
-                    <path d="M12 5v14M5 12l7 7 7-7" />
-                  </motion.svg>
-                </div>
-              )}
-            </div>
+            </Fragment>
           ))}
         </motion.div>
       </div>
