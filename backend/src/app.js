@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import uploadRoutes from './routes/upload.routes.js'
 import analyzeRoutes from "./routes/analyze.routes.js";
 import historyRoutes from "./routes/history.routes.js";
+import healthRoutes from "./routes/health.routes.js";
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use("/api/auth",authRoutes);
 app.use('/api/upload',uploadRoutes);
 app.use("/api/analyze", analyzeRoutes);
 app.use("/api/history",historyRoutes);
+app.use("/health", healthRoutes);
 
 export default app;
