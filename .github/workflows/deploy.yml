@@ -1,0 +1,46 @@
+name: 🚀 Deploy HireMatch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🚀 Deploy to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+
+            echo "📂 Navigating to project..."
+            cd /home/ubuntu/Ai-Resume-Analyzer
+
+            echo "📥 Pulling latest code..."
+            git pull origin main
+
+            echo "🐳 Rebuilding Docker containers..."
+            docker compose up --build -d
+
+            echo "⏳ Waiting for services to start..."
+            sleep 10
+
+            echo "🔍 Checking running containers..."
+            docker compose ps
+
+            echo "🌐 Checking application health..."
+            curl -f http://localhost || exit 1
+
+            echo "🧹 Cleaning unused Docker images..."
+            docker image prune -f
+
+            echo "✅ Deployment completed successfully!"
