@@ -27,6 +27,6 @@ app.use("/api/auth",authRoutes);
 app.use('/api/upload',uploadRoutes);
 app.use("/api/analyze", analyzeRoutes);
 app.use("/api/history",historyRoutes);
-app.use("/health", healthRoutes);
+app.use("/api/health", healthRoutes);
 
 export default app;

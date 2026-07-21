@@ -38,8 +38,8 @@ jobs:
             docker compose ps
 
             echo "🌐 Checking application health..."
-            curl -f http://localhost || exit 1
-
+            curl -f http://localhost:3000/api/health || exit 1
+            
             echo "🧹 Cleaning unused Docker images..."
             docker image prune -f
 
