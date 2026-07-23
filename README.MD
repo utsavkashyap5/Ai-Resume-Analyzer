@@ -50,12 +50,12 @@ Get past the ATS. Get in front of the recruiter.
 <div align="center">
 <table>
 <tr>
-<td><img src="./1.png" alt="HireMatch dashboard" width="400"/></td>
-<td><img src="./2.png" alt="HireMatch resume analysis" width="400"/></td>
+<td><img src="./screenshots/1.png" alt="HireMatch dashboard" width="400"/></td>
+<td><img src="./screenshots/9.png" alt="HireMatch resume analysis" width="400"/></td>
 </tr>
 <tr>
-<td><img src="./3.png" alt="HireMatch ATS score view" width="400"/></td>
-<td><img src="./4.png" alt="HireMatch history view" width="400"/></td>
+<td><img src="./screenshots/11.png" alt="HireMatch ATS score view" width="400"/></td>
+<td><img src="./screenshots/12.png" alt="HireMatch history view" width="400"/></td>
 </tr>
 </table>
 </div>
