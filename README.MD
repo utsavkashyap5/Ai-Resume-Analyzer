@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://via.placeholder.com/120x120.png?text=HM" alt="HireMatch Logo" width="100" />
+
 
 # HireMatch
 
